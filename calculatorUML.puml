@@ -1,0 +1,45 @@
+@startuml
+class calculator.metod.ComplexNumber {
+- int a
+- int b
++ int getA()
++ int getB()
++ void setA(int)
++ void setB(int)
++ String toString()
+}
+class calculator.Main {
++ {static} void main(String[])
+}
+class calculator.metod.calculators.Calculator {
+- ComplexNumber primaryArg
++ void sum(ComplexNumber)
++ void subtraction(ComplexNumber)
++ void multiplication(ComplexNumber)
++ void division(ComplexNumber)
++ ComplexNumber getResult()
+}
+interface calculator.metod.calculators.CanCalculable {
+~ void sum(ComplexNumber)
+~ void subtraction(ComplexNumber)
+~ void multiplication(ComplexNumber)
+~ void division(ComplexNumber)
+~ ComplexNumber getResult()
+}
+interface calculator.metod.calculators.InterfaceCalculableFactory {
+~ CanCalculable create(ComplexNumber)
+}
+class calculator.CalculatorView {
+- Scanner scanner
+- InterfaceCalculableFactory iCalculableFactory
++ void run()
+- ComplexNumber getArg()
+}
+class calculator.metod.calculators.CalculableFactory {
++ CanCalculable create(ComplexNumber)
+}
+
+
+calculator.metod.calculators.CanCalculable <|.. calculator.metod.calculators.Calculator
+calculator.metod.calculators.InterfaceCalculableFactory <|.. calculator.metod.calculators.CalculableFactory
+@enduml
